@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="col-12 p-3">
+        <div class="row">
+            <form autocomplete="off" [formGroup]="miFormulario">
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="clave" placeholder="Ingresa la clave">         
+                    <span class="form-text text-danger" *ngIf="campoValido('clave')">Campo requerido</span>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="fechaCreado" placeholder="Ingresa la fecha de creado">         
+                    <span class="form-text text-danger" *ngIf="campoValido('fechaCreado')">Campo requerido</span>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="Ingresa la nombre">         
+                    <span class="form-text text-danger" *ngIf="campoValido('nombre')">Campo requerido</span>
+                </div>
+
+                <br>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" disabled  *ngIf="!miFormulario.valid" class="btn btn-outline-dark" (click)="save()"><a>Guardar</a></button>
+                    <button type="submit"  *ngIf="miFormulario.valid" class="btn btn-outline-dark" (click)="save()"><a>Guardar</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

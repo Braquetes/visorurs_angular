@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="col-12 p-3">
+        <div class="row">
+            <form autocomplete="off" [formGroup]="miFormulario">
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="clave" placeholder="Ingresa la clave">
+                    <span class="form-text text-danger" *ngIf="campoValido('clave')">Campo requerido</span>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="categoria"
+                        placeholder="Ingresa la categoria">
+                    <span class="form-text text-danger" *ngIf="campoValido('categoria')">Campo requerido</span>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="Ingresa la nombre">
+                    <span class="form-text text-danger" *ngIf="campoValido('nombre')">Campo requerido</span>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <input type="number" class="form-control" formControlName="precios"
+                                placeholder="Ingresa la precio" (keyup.enter)="add(miFormulario.value.precios)">
+                            <span class="form-text text-danger" *ngIf="campoValido('precios')">Campo requerido</span>
+                            <button type="button" class="btn btn-primary" (click)="add(miFormulario.value.precios)">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Precios</label>
+                        <div *ngFor="let pre of precio">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <p>{{pre.precio}}</p>
+                                        <button type="button" (click)="eliminar(pre.precio)" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="">Activo</label>
+                            <input type="checkbox" formControlName="activo" class="form-control-check">
+                            <!-- <input type="text" class="form-control" formControlName="activo" placeholder="Activo?">          -->
+                            <span class="form-text text-danger" *ngIf="checkbox('activo')">Campo requerido</span>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="d-grid gap-2" *ngIf="!id">
+                    <button type="submit" disabled *ngIf="!miFormulario.valid" class="btn btn-outline-dark"
+                        (click)="save()"><a>Guardar</a></button>
+                    <button type="submit" *ngIf="miFormulario.valid" class="btn btn-outline-dark"
+                        (click)="save()"><a>Guardar</a></button>
+                </div>
+                <div class="d-grid gap-2" *ngIf="id">
+                    <button type="submit" disabled *ngIf="!miFormulario.valid" class="btn btn-outline-dark"
+                        (click)="actualizar()"><a>Actualizar</a></button>
+                    <button type="submit" *ngIf="miFormulario.valid" class="btn btn-outline-dark"
+                        (click)="actualizar()"><a>Actualizar</a></button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
